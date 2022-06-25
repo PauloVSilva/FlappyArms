@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameController : MonoBehaviour
-{
+public class GameController : MonoBehaviour{
     public int score;
     public Text scoreText;
 
