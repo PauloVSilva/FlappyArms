@@ -8,18 +8,18 @@ public class Bird : MonoBehaviour{
     public float speed = 1f;
     private Rigidbody2D rigidbody;
     public GameObject gameOver;
-    AudioSource audioData;
+    public AudioSource sleighSFX;
+    public AudioSource sadHornSFX;
 
     public bool ceilingEnabled = true;
     public bool floorProtection = false;
 
-    // Start is called before the first frame update
     void Start(){
         rigidbody = GetComponent<Rigidbody2D>();
-        audioData = GetComponent<AudioSource>();
+        sleighSFX = GetComponent<AudioSource>();
+        sadHornSFX = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
     void Update(){
         if (ceilingEnabled){
             if (rigidbody.transform.position.y >= 1) {
@@ -46,18 +46,21 @@ public class Bird : MonoBehaviour{
         }
 
         if (rigidbody.velocity.y > 0){
-            if(!audioData.isPlaying){
-                audioData.Play();
+            if(!sleighSFX.isPlaying){
+                sleighSFX.Play();
             }
         }
 
         if (rigidbody.velocity.y <= -0.85f){
-            audioData.Stop();
+            sleighSFX.Stop();
         }
     }
 
     void OnCollisionEnter2D(Collision2D collision){
         gameOver.SetActive(true);
+        if(!sadHornSFX.isPlaying){
+            sadHornSFX.Play();
+        }
         Time.timeScale = 0;
     }
 }
