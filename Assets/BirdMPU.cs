@@ -11,6 +11,7 @@ public class BirdMPU : MonoBehaviour{// Start is called before the first frame u
     public int ax, ay, az;
 
     public float speed = 1f;
+    public float threshhold = 3f;
     private Rigidbody2D rigidbody;
     
     // Start is called before the first frame update
@@ -37,7 +38,7 @@ public class BirdMPU : MonoBehaviour{// Start is called before the first frame u
             ax = ax / 1000;
             az = az / 1000;
 
-            if (az >= 3) {
+            if (az >= threshhold) {
                 Vector2 input = new Vector2(0, speed);
                 rigidbody.velocity = input;
             }
